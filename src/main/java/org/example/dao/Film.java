@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 /**
  * @Entity - указывает на то, что этот класс является сущность

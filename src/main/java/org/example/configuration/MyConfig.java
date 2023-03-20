@@ -1,36 +1,34 @@
 package org.example.configuration;
 
-import org.example.service.FilmService;
-import org.example.service.FilmServiceImpl;
-import org.example.service.UserService;
-import org.example.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.Properties;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = " org.example")
 @EnableTransactionManagement
-@PropertySource(value = "classpath")
-public class MyApplicationContextConfiguration {
+public class MyConfig {
 
-    private Environment environment;
     @Autowired
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
-    }
+    EntityManagerFactory factory;
 
-    private Properties hibernateProperties() {
-        Properties properties = new Properties();
-        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
-        properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        return properties;
+    @Autowired
+    DataSource dataSource;
+
+    @Bean(name = "transactionManager")
+    public PlatformTransactionManager transactionManager() {
+        JpaTransactionManager tm =
+                new JpaTransactionManager();
+        tm.setEntityManagerFactory(factory);
+        tm.setDataSource(dataSource);
+        return tm;
     }
 
     /*
@@ -61,13 +59,4 @@ public class MyApplicationContextConfiguration {
         return transactionManager;
     }
 */
-    @Bean
-    FilmService filmService() {
-        return new FilmServiceImpl();
-    }
-
-    @Bean
-    UserService userService() {
-        return new UserServiceImpl();
-    }
 }
