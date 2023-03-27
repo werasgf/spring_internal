@@ -1,4 +1,4 @@
-package org.example.dao;
+package org.example.domain.model;
 
 import javax.persistence.*;
 

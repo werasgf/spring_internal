@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
@@ -17,10 +17,10 @@ import javax.sql.DataSource;
 public class MyConfig {
 
     @Autowired
-    EntityManagerFactory factory;
-
-    @Autowired
     DataSource dataSource;
+/*
+    @Autowired
+    EntityManagerFactory emf;
 
     @Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager() {
@@ -30,27 +30,27 @@ public class MyConfig {
         tm.setDataSource(dataSource);
         return tm;
     }
-
-    /*
+*/
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/internal");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("0000");
         return dataSource;
     }
 
-
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("testgroup.filmography.model");
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
+    @Bean(name = "entityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean factory() {
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setDataSource(dataSource);
+        factory.setPackagesToScan("org.example");
+        factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        return factory;
     }
+
+    /*
 
     @Bean
     public HibernateTransactionManager transactionManager() {
