@@ -25,10 +25,16 @@ public class Film {
     private int year;
 
     @Column(name = "genre")
-    private String genre;
+    private Genre genre;
 
     @Column(name = "watched")
     private boolean watched;
+
+    @Column(name = "film_company")
+    private FilmCompany filmCompany;
+
+    @Column(name = "actor")
+    private Actor actor;
 
     public void setId(int id) {
         this.id = id;
@@ -54,11 +60,11 @@ public class Film {
         return year;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
@@ -73,5 +79,21 @@ public class Film {
     @Override
     public String toString() {
         return "Film [id=" + id + ", title=" + title + ", year=" + year + ", genre=" + genre + ", watched=" + watched + "]";
+    }
+
+    public void setFilmCompany(FilmCompany filmCompany) {
+        this.filmCompany = filmCompany;
+    }
+
+    public FilmCompany getFilmCompany() {
+        return filmCompany;
+    }
+
+    public void setActor(Actor actor) {
+        this.actor = actor;
+    }
+
+    public Actor getActor() {
+        return actor;
     }
 }
