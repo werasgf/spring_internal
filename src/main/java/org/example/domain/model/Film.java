@@ -27,9 +27,6 @@ public class Film {
     @Column(name = "genre")
     private Genre genre;
 
-    @Column(name = "watched")
-    private boolean watched;
-
     @Column(name = "film_company")
     private FilmCompany filmCompany;
 
@@ -68,17 +65,9 @@ public class Film {
         return genre;
     }
 
-    public void setWatched(boolean watched) {
-        this.watched = watched;
-    }
-
-    public boolean isWatched() {
-        return watched;
-    }
-
     @Override
     public String toString() {
-        return "Film [id=" + id + ", title=" + title + ", year=" + year + ", genre=" + genre + ", watched=" + watched + "]";
+        return "Film [id=" + id + ", title=" + title + ", year=" + year + ", genre=" + genre + ", film company=" + filmCompany + ", actor=" + actor + "]";
     }
 
     public void setFilmCompany(FilmCompany filmCompany) {

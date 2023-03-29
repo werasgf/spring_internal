@@ -5,6 +5,8 @@ import org.example.domain.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class UserDAO {
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
@@ -16,20 +18,25 @@ public class UserDAO {
         em.getTransaction().commit();
     }
 
-    public static void getByUserName(User user) {
-        em.getTransaction().begin();
-        em.createQuery("FROM users WHERE Name = " + user.getName());
-        em.getTransaction().commit();
+    public static User get(int id) {
+        return em.find(User.class, id);
     }
 
     public static void update(User user) {
-
+        em.getTransaction().begin();
+        em.merge(user);
+        em.getTransaction().commit();
     }
 
-    public static void remove(User user) {
+    public static void remove(int id) {
         em.getTransaction().begin();
-        em.remove(user);
+        em.remove(get(id));
         em.getTransaction().commit();
+    }
+
+    public static List<User> getAll() {
+        TypedQuery<User> namedQuery = em.createNamedQuery("User.getAll", User.class);
+        return namedQuery.getResultList();
     }
 
 }

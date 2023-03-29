@@ -1,4 +1,4 @@
-package org.example.domain.service;
+package org.example.domain.service.impl;
 
 import org.example.domain.service.FilmService;
 import org.springframework.stereotype.Service;
