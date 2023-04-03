@@ -1,39 +1,39 @@
 package com.senlainc.service.impl;
 
+import com.senlainc.dao.UserDAO;
 import com.senlainc.dao.impl.UserDAOImpl;
-import com.senlainc.di.Singleton;
 import com.senlainc.model.User;
+import com.senlainc.service.UserService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Singleton
-public class UserServiceImpl {
+@Component
+@Transactional(readOnly = true)
+public class UserServiceImpl implements UserService {
 
-    @Transactional
-    public static void saveUser(User user) {
-        UserDAOImpl.save(user);
+    private final UserDAO userDAO = new UserDAOImpl();
+
+    public void saveUser(User user) {
+        userDAO.save(user);
     }
 
-    @Transactional
-    public static User getUser(int id) {
-        return UserDAOImpl.get(id);
+    public User getUser(int id) {
+        return userDAO.get(id);
     }
 
-    @Transactional
-    public static void update(User user){
-        UserDAOImpl.update(user);
+    public void update(User user){
+        userDAO.update(user);
     }
 
-    @Transactional
-    public static void remove(int id) {
-        UserDAOImpl.remove(id);
+    public void remove(int id) {
+        userDAO.remove(id);
     }
 
-    @Transactional
-    public static List<User> getAll() {
-        return UserDAOImpl.getAll();
+    public List<User> getAll() {
+        return userDAO.getAll();
     }
 }

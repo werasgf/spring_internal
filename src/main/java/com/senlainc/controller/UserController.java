@@ -1,33 +1,43 @@
 package com.senlainc.controller;
 
-import com.senlainc.di.Singleton;
 import com.senlainc.model.User;
+import com.senlainc.service.UserService;
 import com.senlainc.service.impl.UserServiceImpl;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@Singleton
+@Component("userController")
+@NoArgsConstructor
 public class UserController {
 
-    public static void saveUser(User user) {
-        UserServiceImpl.saveUser(user);
+    @Autowired
+    private final UserService userService = new UserServiceImpl();
+
+    public void saveUser(User user) {
+        userService.saveUser(user);
     }
 
-    public static User get(int id) {
-        return UserServiceImpl.getUser(id);
+    @GetMapping("/get-user")
+    public User get(int id) {
+        return userService.getUser(id);
     }
 
-    public static void update(User user) {
-        UserServiceImpl.update(user);
+    public void update(User user) {
+        userService.update(user);
     }
 
-    public static void remove(int id) {
-        UserServiceImpl.remove(id);
+    public void remove(int id) {
+        userService.remove(id);
     }
 
-    public static List<User> getAll() {
-        return UserServiceImpl.getAll();
+    @GetMapping("/get-all-user")
+    public List<User> getAll() {
+        return userService.getAll();
     }
 }

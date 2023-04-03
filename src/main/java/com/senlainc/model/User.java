@@ -1,5 +1,9 @@
 package com.senlainc.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +18,8 @@ import java.util.Set;
 @Entity
 @Embeddable
 @Table(name = "users")
+@Getter @Setter
+@AllArgsConstructor
 public class User {
     @Id
     @Column(name = "id")
@@ -40,48 +46,5 @@ public class User {
     )
     private Set<Subscription> subscriptions;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
-    }
-
-    public void setComments(Set<Comments> comments) {
-        this.comments = comments;
-    }
-
-    public Set<Comments> getComments() {
-        return comments;
-    }
-
-    public void setSubscriptions(Set<Subscription> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-
-    public Set<Subscription> getSubscriptions() {
-        return subscriptions;
-    }
 }
