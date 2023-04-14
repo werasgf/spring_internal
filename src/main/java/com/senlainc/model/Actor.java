@@ -4,24 +4,32 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "actors")
-@Getter @Setter
 public class Actor {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Getter
+    @Setter
     @Column(name = "actor_name")
     private String actorName;
 
+    @Getter
+    @Setter
     @ManyToMany
-    @JoinTable(name = "actor_films",
+    @JoinTable(
+            name = "actors_films",
             joinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id")
     )
-    private Set<Film> films;
+    private List<Film> films;
+
+    public Actor(String actorName) {
+        this.actorName = actorName;
+    }
 }

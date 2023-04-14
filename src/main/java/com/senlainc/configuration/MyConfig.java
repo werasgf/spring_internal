@@ -1,9 +1,12 @@
 package com.senlainc.configuration;
 
+import com.senlainc.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
 
@@ -21,25 +24,47 @@ public class MyConfig {
         return dataSource;
     }
 
-//    @Bean(name = "entityManagerFactory")
-//    public LocalContainerEntityManagerFactoryBean factory() {
-//        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-//        factory.setDataSource(dataSource());
-//        factory.setPackagesToScan("com.senlainc");
-//        factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-//        return factory;
-//    }
+    @Bean(name = "entityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean factory() {
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setDataSource(dataSource());
+        factory.setPackagesToScan("com.senlainc");
+        factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        return factory;
+    }
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager() {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(factory().getObject());
-//
-//        return transactionManager;
-//    }
-//
-//    @Bean
-//    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-//        return new PersistenceExceptionTranslationPostProcessor();
-//    }
+    @Bean
+    public Actor actor() {
+        return new Actor("");
+    }
+
+    @Bean
+    public Comment comment() {
+        return new Comment("");
+    }
+
+    @Bean
+    public Film film() {
+        return new Film("", 1);
+    }
+
+    @Bean
+    public FilmCompany filmCompany() {
+        return new FilmCompany("");
+    }
+
+    @Bean
+    public Genre genre() {
+        return new Genre("");
+    }
+
+    @Bean
+    public Reviews reviews() {
+        return new Reviews(1);
+    }
+
+    @Bean
+    public User user() {
+        return new User("", "");
+    }
 }

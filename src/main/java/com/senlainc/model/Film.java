@@ -4,57 +4,49 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
-
-/**
- * @Entity - указывает на то, что этот класс является сущность
- * @Table - указывает на конкретную таблицу для отображения этой сущности
- * @Id - указывает, что это поле является первичным ключом
- * @Column - связывает поле со столбцом в таблице
- * @GeneratedValue - свойство будет генерироваться автоматом
- * @FetchType.EAGER - стратегия, которая предусматривает получение полной связи между
- * сущностями, и последующих обращеня к связям не будет выполняться запрос на
- * получение данных, т.к. данные изначально будут получены полностью
- */
+import java.util.List;
 
 @Entity
 @Table(name = "films")
-@Getter @Setter
 public class Film {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Getter
+    @Setter
     @Column(name = "title", nullable = false, length = 200)
     private String title;
 
+    @Getter
+    @Setter
     @Column(name = "year")
     private int year;
 
-//    @Column(name = "genre")
-//    private Genre genre;
+    @Getter
+    @Setter
+    @ManyToMany(mappedBy = "films")
+    private List<Actor> actors;
 
-    @Column(name = "film_company")
-    private Integer filmCompany;
+    @Getter
+    @Setter
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "film_company", referencedColumnName = "id")
+    private FilmCompany filmCompany;
 
-    @Column(name = "actor")
-    private Actor actor;
+    @Getter
+    @Setter
+    @ManyToMany(mappedBy = "films")
+    private List<Genre> genres;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "films")
-    private Set<Actor> actors;
+    @Getter
+    @Setter
+    @ManyToMany(mappedBy = "films")
+    private List<Reviews> reviews;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private FilmCompany filmCompanies;
-//
-//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "films")
-//    private Set<Genre> genres;
-//
-//    @OneToMany(mappedBy = "reviews")
-//    private Set<Reviews> reviews;
-//
-//    @Override
-//    public String toString() {
-//        return "Film [id=" + id + ", title=" + title + ", year=" + year + ", genre=" + genre + ", film company=" + filmCompany + ", actor=" + actor + "]";
-//    }
+    public Film(String title, int year) {
+        this.title = title;
+        this.year = year;
+    }
 }

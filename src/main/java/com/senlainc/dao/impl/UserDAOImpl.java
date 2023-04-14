@@ -1,11 +1,11 @@
-package com.senlainc.dao.impl;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-@Repository
-@Transactional
-public class UserDAOImpl{// implements UserDAO {
+//package com.senlainc.dao.impl;
+//
+//import org.springframework.stereotype.Repository;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//@Repository
+//@Transactional
+//public class UserDAOImpl implements UserDAO {
 //
 //    @PersistenceContext
 //    private EntityManager em;
@@ -41,4 +41,4 @@ public class UserDAOImpl{// implements UserDAO {
 //        TypedQuery<User> namedQuery = em.createNamedQuery("User.getAll", User.class);
 //        return namedQuery.getResultList();
 //    }
-}
+//}

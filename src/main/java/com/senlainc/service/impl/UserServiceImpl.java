@@ -1,13 +1,16 @@
-package com.senlainc.service.impl;
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-@Service
-@Component
+//package com.senlainc.service.impl;
+//
+//import com.senlainc.model.User;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Service;
+//
+//import java.util.List;
+//
+//@Service
+//@Component
 //@Transactional(readOnly = true)
-public class UserServiceImpl{ //implements UserService {
-
+//public class UserServiceImpl implements UserService {
 //    @Autowired
 //    private final UserDAO userDAO = new UserDAOImpl();
 //
@@ -30,4 +33,4 @@ public class UserServiceImpl{ //implements UserService {
 //    public List<User> getAll() {
 //        return userDAO.getAll();
 //    }
-}
+//}
