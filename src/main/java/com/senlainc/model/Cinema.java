@@ -1,4 +1,3 @@
 package com.senlainc.model;
-
-public interface Comments {
+public class Cinema {
 }
