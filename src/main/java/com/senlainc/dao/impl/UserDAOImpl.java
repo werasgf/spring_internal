@@ -1,7 +1,14 @@
-//package com.senlainc.dao.impl;
+package com.senlainc.dao.impl;//package com.senlainc.dao.impl;
 //
+//import com.senlainc.dao.UserDAO;
+//import com.senlainc.model.User;
 //import org.springframework.stereotype.Repository;
 //import org.springframework.transaction.annotation.Transactional;
+//
+//import javax.persistence.EntityManager;
+//import javax.persistence.PersistenceContext;
+//import javax.persistence.TypedQuery;
+//import java.util.List;
 //
 //@Repository
 //@Transactional

@@ -1,4 +1,4 @@
 package com.senlainc.model;
 
-public interface User {
+public interface Comments {
 }

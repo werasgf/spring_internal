@@ -14,6 +14,7 @@ public class Application {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+//        em.persist(new UserImpl("l", "h"));
         em.getTransaction().commit();
     }
 }

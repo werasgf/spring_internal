@@ -1,27 +1,39 @@
 package com.senlainc.configuration;
 
-import com.senlainc.model.*;
+import com.senlainc.model.CommentsImpl;
+import com.senlainc.model.UserImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "com.senlainc")
-//@EnableTransactionManagement
+@EnableTransactionManagement
 public class MyConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/internal");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/internal_test");
         dataSource.setUsername("postgres");
         dataSource.setPassword("0000");
         return dataSource;
+    }
+
+    @Bean
+    public UserImpl user() {
+        return new UserImpl("", "");
+    }
+
+    @Bean
+    public CommentsImpl comments() {
+        return new CommentsImpl(new UserImpl("", ""), "");
     }
 
     @Bean(name = "entityManagerFactory")
@@ -33,38 +45,5 @@ public class MyConfig {
         return factory;
     }
 
-    @Bean
-    public Actor actor() {
-        return new Actor("");
-    }
 
-    @Bean
-    public Comment comment() {
-        return new Comment("");
-    }
-
-    @Bean
-    public Film film() {
-        return new Film("", 1);
-    }
-
-    @Bean
-    public FilmCompany filmCompany() {
-        return new FilmCompany("");
-    }
-
-    @Bean
-    public Genre genre() {
-        return new Genre("");
-    }
-
-    @Bean
-    public Reviews reviews() {
-        return new Reviews(1);
-    }
-
-    @Bean
-    public User user() {
-        return new User("", "");
-    }
 }

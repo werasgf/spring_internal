@@ -6,26 +6,27 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "comments")
-public class Comment {
+@Table(name = "comments_users")
+public class CommentsImpl implements Comments{
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Getter
     @Setter
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserImpl user;
 
     @Getter
     @Setter
-    @Column(name = "text")
+    @Column(name = "text", nullable = false, unique = true, length = 50)
     private String text;
 
-    public Comment( String text) {
-//        this.user = user;
+    public CommentsImpl(UserImpl user, String text) {
+        this.user = user;
         this.text = text;
     }
 }

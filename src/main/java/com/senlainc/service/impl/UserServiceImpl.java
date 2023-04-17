@@ -1,6 +1,9 @@
-//package com.senlainc.service.impl;
+package com.senlainc.service.impl;//package com.senlainc.service.impl;
 //
+//import com.senlainc.dao.UserDAO;
+//import com.senlainc.dao.impl.UserDAOImpl;
 //import com.senlainc.model.User;
+//import com.senlainc.service.UserService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Component;
 //import org.springframework.stereotype.Service;
@@ -9,8 +12,8 @@
 //
 //@Service
 //@Component
-//@Transactional(readOnly = true)
 //public class UserServiceImpl implements UserService {
+//
 //    @Autowired
 //    private final UserDAO userDAO = new UserDAOImpl();
 //
