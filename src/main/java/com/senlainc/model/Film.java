@@ -12,7 +12,7 @@ public class Film {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Getter
     @Setter
@@ -31,8 +31,8 @@ public class Film {
 
     @Getter
     @Setter
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "film_company", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "film_company")
     private FilmCompany filmCompany;
 
     @Getter
@@ -43,7 +43,7 @@ public class Film {
     @Getter
     @Setter
     @ManyToMany(mappedBy = "films")
-    private List<Reviews> reviews;
+    private List<Review> reviews;
 
     public Film(String title, int year) {
         this.title = title;

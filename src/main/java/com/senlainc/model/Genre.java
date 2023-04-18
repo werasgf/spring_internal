@@ -25,8 +25,8 @@ public class Genre {
     @ManyToMany
     @JoinTable(
             name = "genres_films",
-            joinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id")
     )
     private List<Film> films;
 

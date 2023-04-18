@@ -15,14 +15,20 @@ public class Comment {
 
     @Getter
     @Setter
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "users")
     private User user;
 
     @Getter
     @Setter
     @Column(name = "text")
     private String text;
+
+    @Getter
+    @Setter
+    @OneToOne
+    @JoinColumn(name = "review")
+    private Review review;
 
     public Comment( String text) {
 //        this.user = user;

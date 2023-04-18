@@ -59,8 +59,8 @@ public class MyConfig {
     }
 
     @Bean
-    public Reviews reviews() {
-        return new Reviews(1);
+    public Review reviews() {
+        return new Review(1);
     }
 
     @Bean

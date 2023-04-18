@@ -14,6 +14,7 @@ public class Application {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+//        em.createNamedQuery("CREATE TABLE comments (id INT, user_id INT, text VARCHAR(30))").executeUpdate();
         em.getTransaction().commit();
     }
 }

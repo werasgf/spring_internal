@@ -5,11 +5,10 @@
     <persistence-unit name="my-persistence-unit">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.senlainc.model.Actor</class>
-        <class>com.senlainc.model.Comments</class>
         <class>com.senlainc.model.FilmCompany</class>
         <class>com.senlainc.model.Film</class>
         <class>com.senlainc.model.Genre</class>
-        <class>com.senlainc.model.Reviews</class>
+        <class>com.senlainc.model.Review</class>
         <class>com.senlainc.model.User</class>
         <class>com.senlainc.model.Comment</class>
         <!--
@@ -24,8 +23,9 @@
             <property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
             <property name="javax.persistence.jdbc.password" value="0000" /> <!-- DB Password -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="show_sql" value="true"/>
+            <property name="packagesToScan" value="com.senlainc.model" />
         </properties>
     </persistence-unit>
 </persistence>
