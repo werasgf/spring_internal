@@ -1,9 +1,15 @@
 package com.senlainc.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "genre")
+@Table(name = "genres")
+@NoArgsConstructor
 public class Genre {
 
     @Id
@@ -11,28 +17,22 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Getter
+    @Setter
     @Column(name = "genre")
     private String genre;
 
+    @Getter
+    @Setter
     @ManyToMany
-    @JoinTable(name = "genre_films",
-            joinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id")
+    @JoinTable(
+            name = "genres_films",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id")
     )
+    private List<Film> films;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
+    public Genre(String genre) {
         this.genre = genre;
     }
 }

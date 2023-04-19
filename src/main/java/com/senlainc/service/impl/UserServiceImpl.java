@@ -1,39 +1,34 @@
 package com.senlainc.service.impl;
 
-import com.senlainc.dao.impl.UserDAOImpl;
-import com.senlainc.di.Singleton;
 import com.senlainc.model.User;
+import com.senlainc.repository.UserRepository;
+import com.senlainc.repository.impl.UserRepositoryImpl;
+import com.senlainc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
-@Singleton
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserRepository userRepository = new UserRepositoryImpl();
 
-    @Transactional
-    public static void saveUser(User user) {
-        UserDAOImpl.save(user);
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
-    @Transactional
-    public static User getUser(int id) {
-        return UserDAOImpl.get(id);
+    @Override
+    public void update(User user, int id) {
+        userRepository.update(user, id);
     }
 
-    @Transactional
-    public static void update(User user){
-        UserDAOImpl.update(user);
+    @Override
+    public User getUserById(int id) {
+        return userRepository.findById(id);
     }
 
-    @Transactional
-    public static void remove(int id) {
-        UserDAOImpl.remove(id);
-    }
-
-    @Transactional
-    public static List<User> getAll() {
-        return UserDAOImpl.getAll();
+    @Override
+    public void delete(int id) {
+        userRepository.delete(id);
     }
 }

@@ -1,87 +1,38 @@
 package com.senlainc.model;
 
-import javax.persistence.*;
-import java.util.Set;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-/**
- * @Entity - указывает на то, что этот класс является сущность
- * @Table - указывает на конкретную таблицу для отображения этой сущности
- * @Id - указывает, что это поле является первичным ключом
- * @Column - связывает поле со столбцом в таблице
- * @GeneratedValue - свойство будет генерироваться автоматом
- */
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Embeddable
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
+    @Getter
+    @Setter
     @Column(name = "name", nullable = false, unique = true, length = 50)
     private String name;
 
+    @Getter
+    @Setter
     @Column(name = "email", nullable = false, unique = true, length = 50)
     private String email;
 
-    @ManyToMany
-    @JoinTable(name = "users_comments",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "comment_id", referencedColumnName = "id")
-    )
-    private Set<Comments> comments;
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
 
-    @ManyToMany
-    @JoinTable(name = "users_subscription",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "subscription_id", referencedColumnName = "id")
-    )
-    private Set<Subscription> subscriptions;
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setName(String name) {
+    public User(String name, String email) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
-    }
-
-    public void setComments(Set<Comments> comments) {
-        this.comments = comments;
-    }
-
-    public Set<Comments> getComments() {
-        return comments;
-    }
-
-    public void setSubscriptions(Set<Subscription> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-
-    public Set<Subscription> getSubscriptions() {
-        return subscriptions;
     }
 }

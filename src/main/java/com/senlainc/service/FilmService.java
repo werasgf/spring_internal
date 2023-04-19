@@ -1,5 +1,13 @@
 package com.senlainc.service;
 
+import com.senlainc.model.Film;
+
 public interface FilmService {
-    String sayFilmName();
+    void save(Film film);
+
+    void update(Film film, int id);
+
+    Film getFilmById(int id);
+
+    void delete(int id);
 }

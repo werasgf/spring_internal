@@ -3,16 +3,14 @@ package com.senlainc.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "actors")
-@ToString
+@Table(name = "reviews")
 @NoArgsConstructor
-public class Actor {
+public class Review {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,21 +18,26 @@ public class Actor {
 
     @Getter
     @Setter
-    @Column(name = "actor_name")
-    private String actorName;
+    @Column(name = "rating")
+    private int rating;
+
+    @Getter
+    @Setter
+    @OneToOne
+    @JoinColumn(name = "comment")
+    private Comment comment;
 
     @Getter
     @Setter
     @ManyToMany
     @JoinTable(
-            name = "actors_films",
-            joinColumns = @JoinColumn(name = "actor_id"),
+            name = "reviews_films",
+            joinColumns = @JoinColumn(name = "review_id"),
             inverseJoinColumns = @JoinColumn(name = "film_id")
     )
     private List<Film> films;
 
-    public Actor(String actorName) {
-        this.actorName = actorName;
+    public Review(int rating) {
+        this.rating = rating;
     }
-
 }
