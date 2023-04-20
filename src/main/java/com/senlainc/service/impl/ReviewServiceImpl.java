@@ -2,7 +2,6 @@ package com.senlainc.service.impl;
 
 import com.senlainc.model.Review;
 import com.senlainc.repository.ReviewRepository;
-import com.senlainc.repository.impl.ReviewRepositoryImpl;
 import com.senlainc.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReviewServiceImpl implements ReviewService {
     @Autowired
-    private ReviewRepository reviewRepository = new ReviewRepositoryImpl();
+    private ReviewRepository reviewRepository;
 
     @Override
     public void save(Review review) {

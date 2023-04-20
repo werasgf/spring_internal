@@ -2,7 +2,6 @@ package com.senlainc.service.impl;
 
 import com.senlainc.model.User;
 import com.senlainc.repository.UserRepository;
-import com.senlainc.repository.impl.UserRepositoryImpl;
 import com.senlainc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserRepository userRepository = new UserRepositoryImpl();
+    private UserRepository userRepository;
 
     @Override
     public void saveUser(User user) {

@@ -2,7 +2,6 @@ package com.senlainc.service.impl;
 
 import com.senlainc.model.Film;
 import com.senlainc.repository.FilmRepository;
-import com.senlainc.repository.impl.FilmRepositoryImpl;
 import com.senlainc.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FilmServiceImpl implements FilmService {
     @Autowired
-    private FilmRepository filmRepository = new FilmRepositoryImpl();
+    private FilmRepository filmRepository;
 
     @Override
     public void save(Film film) {

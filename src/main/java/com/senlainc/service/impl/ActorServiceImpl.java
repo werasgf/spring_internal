@@ -2,7 +2,6 @@ package com.senlainc.service.impl;
 
 import com.senlainc.model.Actor;
 import com.senlainc.repository.ActorRepository;
-import com.senlainc.repository.impl.ActorRepositoryImpl;
 import com.senlainc.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ActorServiceImpl implements ActorService {
     @Autowired
-    private ActorRepository actorRepository = new ActorRepositoryImpl();
+    private ActorRepository actorRepository;
 
     @Override
     public void save(Actor actor) {

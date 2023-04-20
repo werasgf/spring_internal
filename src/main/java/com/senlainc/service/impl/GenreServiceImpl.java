@@ -2,7 +2,6 @@ package com.senlainc.service.impl;
 
 import com.senlainc.model.Genre;
 import com.senlainc.repository.GenreRepository;
-import com.senlainc.repository.impl.GenreRepositoryImpl;
 import com.senlainc.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GenreServiceImpl implements GenreService {
     @Autowired
-    private GenreRepository genreRepository = new GenreRepositoryImpl();
+    private GenreRepository genreRepository;
 
     @Override
     public void save(Genre genre) {

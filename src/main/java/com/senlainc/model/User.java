@@ -31,6 +31,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
+//    @Getter
+//    @Setter
+//    @OneToMany(mappedBy = "user")
+//    private List<Subscription> user_sub;
+
     public User(String name, String email) {
         this.name = name;
         this.email = email;

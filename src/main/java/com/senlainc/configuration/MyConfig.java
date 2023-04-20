@@ -1,6 +1,5 @@
 package com.senlainc.configuration;
 
-import com.senlainc.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,40 +31,4 @@ public class MyConfig {
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return factory;
     }
-
-    @Bean
-    public Actor actor() {
-        return new Actor("");
-    }
-
-    @Bean
-    public Comment comment() {
-        return new Comment("");
-    }
-
-    @Bean
-    public Film film() {
-        return new Film("", 1);
-    }
-
-    @Bean
-    public FilmCompany filmCompany() {
-        return new FilmCompany("");
-    }
-
-    @Bean
-    public Genre genre() {
-        return new Genre("");
-    }
-
-    @Bean
-    public Review reviews() {
-        return new Review(1);
-    }
-
-    @Bean
-    public User user() {
-        return new User("", "");
-    }
-
 }
