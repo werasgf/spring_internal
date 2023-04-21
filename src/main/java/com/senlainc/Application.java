@@ -11,9 +11,14 @@ public class Application {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
 
         ActorService actorService = context.getBean(ActorService.class);
-        Actor actor = new Actor("act");
+        Actor actor1 = new Actor("act 1");
+        Actor actor3 = new Actor("act 3");
+        Actor actor2 = new Actor("act 2");
+        actorService.save(actor1);
+        actorService.save(actor2);
+        actorService.save(actor3);
 
-        actorService.save(actor);
+        List<Ac>
 //       actor.setActorName("act 123");
 //        actorService.update(actor,1);
 //        System.out.println(actorService.getActorById(1));

@@ -6,6 +6,8 @@ import com.senlainc.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ActorServiceImpl implements ActorService {
     @Autowired
@@ -24,6 +26,11 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public Actor getActorById(int id) {
         return actorRepository.findById(id);
+    }
+
+    @Override
+    public List<Actor> getAll() {
+        return actorRepository.findAll();
     }
 
     @Override

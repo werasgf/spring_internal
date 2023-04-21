@@ -7,9 +7,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Repository
 public class ActorRepositoryImpl extends AbstractRepository implements ActorRepository {
+
+    private static final String HQL_GET_ALL = "select id from actors";
 
     @Transactional
     @Override
@@ -39,6 +45,17 @@ public class ActorRepositoryImpl extends AbstractRepository implements ActorRepo
         Actor actor = em.find(Actor.class, id);
         em.getTransaction().commit();
         return actor;
+    }
+
+    @Transactional
+    @Override
+    public List<Actor> findAll() {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        Set<Actor> actorSet = new HashSet<>(em.createQuery(HQL_GET_ALL).getResultList());
+        List<Actor> actors = new ArrayList<>(actorSet);
+        em.getTransaction().commit();
+        return actors;
     }
 
     @Transactional
